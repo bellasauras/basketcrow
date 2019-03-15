@@ -15,7 +15,16 @@ var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext ('2d');
 last_time=Date.now();
 var stealing=false;
-var point=false;
+var point=null;
+function reset_crow_position() {
+    if(point==1) {
+        crows=[new Crow(200,300,true),new Crow(600,300,false)];
+    } else {
+        crows=[new Crow(200,300,false),new Crow(600,300,true)];
+    }
+    point=null;
+
+}
 function tick() {
     // scene 1
     ctx.clearRect(0,0,1000000,100000);
@@ -65,7 +74,11 @@ function tick() {
                 if(distance_to_basket<(CROW_SIZE/8)) {
                     crows[0].ball=false;
                     crows[1].ball=false;
-                    point=true;
+                    point=i;                
+                    scores[i]+=2;
+                    setTimeout(function(){
+                        reset_crow_position();
+                    },1000)
                 }
             }
             crows[i].draw(ctx);
@@ -87,7 +100,7 @@ window.addEventListener('keydown',function(e){
         start_game_pressed=true;
         setTimeout(function(){
             scene=1;
-            crows=[new Crow(200,300,true),new Crow(600,300,false)];
+            reset_crow_position();
         },1000)
     } else if(scene==1) {
         if(e.keyCode==65) {
