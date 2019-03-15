@@ -9,20 +9,35 @@ function Crow() {
     this.x=100;
     this.y=100;
     this.angle=0;
-    this.clockwise=true;
+    this.clockwise=false;
+    this.strength=0;
     this.up=true;
     this.draw=function(ctx){
+        let frame=1;
+        if(this.force) frame=2;
         ctx.fillRect(this.x,this.y,30,30);
         ctx.save();
         ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle*Math.PI/180);
+        if(this.clockwise) {
+            ctx.rotate(Math.radians(this.angle*-1 % 360));
+        } else {
+            ctx.rotate(Math.radians(this.angle+200 % 360));
+
+        }
         ctx.translate(-this.x,-this.y);
-        ctx.drawImage(img_crow, 0,0,60,80,this.x,this.y,CROW_SIZE,CROW_SIZE);
+
+        ctx.drawImage(img_crow, 0,0,60*frame,80,this.x-(CROW_SIZE/4),this.y-(CROW_SIZE/4),CROW_SIZE/2,CROW_SIZE/2);
         ctx.restore();
 
     }
     this.move=function(unit) {
-        this.angle+=unit;
+        if(this.force) {
+            this.angle+=unit/4;
+
+        } else {
+            this.angle+=unit;
+
+        }
         var rad = Math.radians(this.angle % 360);
         if(this.clockwise) {
             if(this.up) {
@@ -34,12 +49,11 @@ function Crow() {
             }
 
         } else {
-            this.x += unit*Math.cos(rad);
-            this.y += unit*Math.sin(rad);
+            let multi=1;
+            if(this.force) multi=2
+            this.x += unit*Math.cos(rad)*multi;
+            this.y += unit*Math.sin(rad)*multi;
         }
-
-      
-        // return [x, y];
     }
 }
 var canvas = document.getElementById('canvas');
@@ -51,22 +65,44 @@ function tick() {
     ctx.clearRect(0,0,1000,100000);
     ctx.fillStyle = 'red';
     for(let i=0;i<crows.length;i++) {
-        crows[i].move(delta_time/10);
+        if(crows[0].force==true) {
+            crows[i].move(delta_time/8);
+
+        } else {
+            crows[i].move(delta_time/10);
+
+        }
         crows[i].draw(ctx);
     }
+    
     window.requestAnimationFrame(tick);
 }
 window.requestAnimationFrame(tick);
 // keyboard events
 window.addEventListener('keydown',function(e){
     if(e.keyCode==65) {
-        crows[0].clockwise=true;
+        // crows[0].clockwise=true;
     } else if(e.keyCode==68) {
-        crows[0].clockwise=false;
-    } else if(e.keyCode==87) {
-        crows[0].up=false;
+        // crows[0].clockwise=false;
     } else if(e.keyCode==83) {
-        crows[0].up=true;
+        // crows[0].up=false;
+    } else if(e.keyCode==87) {
+        // crows[0].up=true;
+        crows[0].force=true;
+        console.log(crows[0].force)
+    }
+});
+window.addEventListener('keyup',function(e){
+    if(e.keyCode==65) {
+        // crows[0].clockwise=true;
+    } else if(e.keyCode==68) {
+        // crows[0].clockwise=false;
+    } else if(e.keyCode==83) {
+        // crows[0].up=false;
+    } else if(e.keyCode==87) {
+        // crows[0].up=true;
+        crows[0].force=false;
+        console.log(crows[0].force)
     }
 });
 var crows=[new Crow()];
