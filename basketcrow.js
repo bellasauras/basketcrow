@@ -1,6 +1,10 @@
+const CROW_SIZE=140;
 Math.radians = function(degrees) {
     return degrees * Math.PI / 180;
 };
+var img_crow = new Image();
+img_crow.src='assets/crow-sprite-2.png'
+
 function Crow() {
     this.x=100;
     this.y=100;
@@ -9,6 +13,13 @@ function Crow() {
     this.up=true;
     this.draw=function(ctx){
         ctx.fillRect(this.x,this.y,30,30);
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle*Math.PI/180);
+        ctx.translate(-this.x,-this.y);
+        ctx.drawImage(img_crow, 0,0,60,80,this.x,this.y,CROW_SIZE,CROW_SIZE);
+        ctx.restore();
+
     }
     this.move=function(unit) {
         this.angle+=unit;
