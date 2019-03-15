@@ -1,7 +1,9 @@
 const CROW_SIZE=140;
 const SCREEN_WIDTH=800;
 const SCREEN_HEIGHT=600;
+const BASKET_DISTANCE=50;
 var scene=0;
+var scores=[0,0];
 var start_game_pressed=false;
 Math.radians = function(degrees) {
     return degrees * Math.PI / 180;
@@ -13,12 +15,12 @@ var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext ('2d');
 last_time=Date.now();
 var stealing=false;
+var point=false;
 function tick() {
     // scene 1
     ctx.clearRect(0,0,1000000,100000);
     if(scene==0) {
         ctx.font = '100px fantasy';
-
         ctx.fillText ("BASKET CROWS", 100, 100);
         ctx.font = '20px fantasy';
         if(!start_game_pressed)
@@ -31,7 +33,7 @@ function tick() {
             if(crows[0].ball) {
                 crows[1].ball=true;
                 crows[0].ball=false;
-            } else {
+            } else if(crows[1].ball) {
                 crows[1].ball=false;
                 crows[0].ball=true;
             }
@@ -41,16 +43,38 @@ function tick() {
         } 
         delta_time=Date.now()-last_time;
         last_time=Date.now();
-        ctx.fillStyle = 'red';
-        
+
+        // draw baskets
+        ctx.fillStyle = 'blue';
+
+        ctx.fillRect(BASKET_DISTANCE,300,30,30);
+        ctx.fillRect(SCREEN_WIDTH-BASKET_DISTANCE,300,30,30);
+        // draw crows
         for(let i=0;i<crows.length;i++) {
             if(crows[0].force==true) {
                 crows[i].move(delta_time/8);
             } else {
                 crows[i].move(delta_time/10);
             }
+            if(crows[i].ball) {
+                // distance to basket
+                let basket_y=SCREEN_HEIGHT/2;
+                let basket_x=BASKET_DISTANCE;
+                if(i==0) basket_x=SCREEN_WIDTH-BASKET_DISTANCE;
+                var distance_to_basket = Math.sqrt( Math.pow((crows[i].x-basket_x), 2) + Math.pow((crows[i].y-SCREEN_HEIGHT/2),2));
+                if(distance_to_basket<(CROW_SIZE/8)) {
+                    crows[0].ball=false;
+                    crows[1].ball=false;
+                    point=true;
+                }
+            }
             crows[i].draw(ctx);
         }
+        // draw scores
+        ctx.font = '20px fantasy';
+        ctx.fillText ("CHICAGO       "+scores[0], 100, 540);
+        ctx.fillText ("SAN FRANCISCO    "+scores[1], 100, 560);
+
     }
     
     

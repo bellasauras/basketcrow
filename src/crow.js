@@ -8,6 +8,7 @@ function Crow(x,y,ball) {
     this.strength=0;
     this.up=true;
     this.draw=function(ctx){
+        ctx.fillStyle = 'red';
         let frame=0;
         if(this.force) frame=1;
         if(this.ball) ctx.fillRect(this.x,this.y,30,30);
