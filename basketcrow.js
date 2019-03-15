@@ -8,9 +8,11 @@ var start_game_pressed=false;
 Math.radians = function(degrees) {
     return degrees * Math.PI / 180;
 };
+// load images
 var img_crow = new Image();
 img_crow.src='assets/crow-sprite-3.png'
-
+var img_court = new Image();
+img_court.src='assets/crow-court.png'
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext ('2d');
 last_time=Date.now();
@@ -52,6 +54,8 @@ function tick() {
         } 
         delta_time=Date.now()-last_time;
         last_time=Date.now();
+        // draw court
+        ctx.drawImage(img_court, 0,0,800,600);
 
         // draw baskets
         ctx.fillStyle = 'blue';
