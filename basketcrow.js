@@ -13,6 +13,8 @@ var img_crow = new Image();
 img_crow.src='assets/crow-sprite-3.png'
 var img_court = new Image();
 img_court.src='assets/crow-court.png'
+var img_basket = new Image();
+img_basket.src='assets/basket.png'
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext ('2d');
 last_time=Date.now();
@@ -59,9 +61,12 @@ function tick() {
 
         // draw baskets
         ctx.fillStyle = 'blue';
+        ctx.drawImage(img_basket, BASKET_DISTANCE-36,250,76,108);
+        ctx.drawImage(img_basket, SCREEN_WIDTH-BASKET_DISTANCE-36,250,76,108);
 
-        ctx.fillRect(BASKET_DISTANCE,300,30,30);
-        ctx.fillRect(SCREEN_WIDTH-BASKET_DISTANCE,300,30,30);
+        // ctx.fillRect(BASKET_DISTANCE,300,30,30);
+        // ctx.fillRect(SCREEN_WIDTH-BASKET_DISTANCE,300,30,30);
+
         // draw crows
         for(let i=0;i<crows.length;i++) {
             if(crows[0].force==true) {
@@ -71,7 +76,6 @@ function tick() {
             }
             if(crows[i].ball) {
                 // distance to basket
-                let basket_y=SCREEN_HEIGHT/2;
                 let basket_x=BASKET_DISTANCE;
                 if(i==0) basket_x=SCREEN_WIDTH-BASKET_DISTANCE;
                 var distance_to_basket = Math.sqrt( Math.pow((crows[i].x-basket_x), 2) + Math.pow((crows[i].y-SCREEN_HEIGHT/2),2));
@@ -91,10 +95,8 @@ function tick() {
         ctx.font = '20px fantasy';
         ctx.fillText ("CHICAGO       "+scores[0], 100, 540);
         ctx.fillText ("SAN FRANCISCO    "+scores[1], 100, 560);
-
     }
-    
-    
+
     window.requestAnimationFrame(tick);
 }
 window.requestAnimationFrame(tick);
