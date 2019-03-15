@@ -3,7 +3,7 @@ Math.radians = function(degrees) {
     return degrees * Math.PI / 180;
 };
 var img_crow = new Image();
-img_crow.src='assets/crow-sprite-2.png'
+img_crow.src='assets/crow-sprite-3.png'
 
 function Crow() {
     this.x=100;
@@ -13,8 +13,8 @@ function Crow() {
     this.strength=0;
     this.up=true;
     this.draw=function(ctx){
-        let frame=1;
-        if(this.force) frame=2;
+        let frame=0;
+        if(this.force) frame=1;
         ctx.fillRect(this.x,this.y,30,30);
         ctx.save();
         ctx.translate(this.x, this.y);
@@ -26,7 +26,7 @@ function Crow() {
         }
         ctx.translate(-this.x,-this.y);
 
-        ctx.drawImage(img_crow, 0,0,60*frame,80,this.x-(CROW_SIZE/4),this.y-(CROW_SIZE/4),CROW_SIZE/2,CROW_SIZE/2);
+        ctx.drawImage(img_crow, CROW_SIZE*frame,0,CROW_SIZE,CROW_SIZE,this.x-(CROW_SIZE/4),this.y-(CROW_SIZE/4),CROW_SIZE/2,CROW_SIZE/2);
         ctx.restore();
 
     }
