@@ -45,14 +45,26 @@ img_ball.src='assets/crow-ball.png'
 var img_crow_closeup_red=new Image();
 img_crow_closeup_red.src='assets/crow-closeup-red.png'
 
-var img_crow_closeup_green=new Image();
-img_crow_closeup_green.src='assets/crow-closeup-green.png'
+var img_crow_closeup_orange=new Image();
+img_crow_closeup_orange.src='assets/crow-closeup-orange.png'
 
 var img_team_chicago=new Image();
 img_team_chicago.src='assets/logo-worm.png'
 
 var img_team_sfo=new Image();
 img_team_sfo.src='assets/logo-corn.png'
+
+//ui elements
+//p1 p2
+var img_p1 = new Image();
+img_p1.src='assets/p1p2p1.png'
+
+var img_p2 = new Image();
+img_p2.src='assets/p1p2p2.png'
+//score 0 2 4 6 8 10 sprite
+var img_score = new Image();
+img_score.src = 'assets/sprite-numbers.png'
+
 
 var img_feather=new Image();
 img_feather.src='assets/feather-grey.png'
@@ -104,8 +116,8 @@ function tick() {
         // ctx.drawImage(img_team_chicago, 50,300,256,256);
         // ctx.drawImage(img_team_sfo, 400,300,256,256);
 
-        ctx.drawImage(img_crow_closeup_green, 12,70,364,280);
-        ctx.drawImage(img_crow_closeup_red, 420,70,364,280);
+        ctx.drawImage(img_crow_closeup_orange, 12,50,364,364);
+        ctx.drawImage(img_crow_closeup_red, 420,50,364,364);
         ctx.drawImage(img_team_sfo, 60,300,256,256);
         ctx.drawImage(img_team_chicago, 480,300,256,256);
         if(blink) {
