@@ -89,9 +89,12 @@ function tick() {
         var dist = Math.sqrt( Math.pow((crows[0].x-crows[1].x), 2) + Math.pow((crows[0].y-crows[1].y),2));
         if(dist<(CROW_SIZE/2)&&stealing==false) {
             stealing=true;
+            audio_crow1.play(); 
+
             if(crows[0].ball) {
                 crows[1].ball=true;
                 crows[0].ball=false;
+                
             } else if(crows[1].ball) {
                 crows[1].ball=false;
                 crows[0].ball=true;
