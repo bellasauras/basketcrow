@@ -80,6 +80,8 @@ function tick() {
 
     if(scene==0) {
         // scene 0: official licensed product
+        ctx.drawImage(img_bclogo, 0,0,480,480);
+
         ctx.fillText("A CBA OFFICIAL LICENSED PRODUCT",100,100);
     } else if(scene==1) {
         ctx.drawImage(img_bclogo, 0,0,480,480);
@@ -87,15 +89,20 @@ function tick() {
 
     } else if(scene==2) {
         // scene 2: vs.
-        ctx.drawImage(img_crow_closeup_red, 50,100,364,280);
-        ctx.drawImage(img_crow_closeup_green, 400,100,364,280);
-        ctx.drawImage(img_team_chicago, 50,300,256,256);
-        ctx.drawImage(img_team_sfo, 400,300,256,256);
+        // ctx.drawImage(img_crow_closeup_red, 50,100,364,280);
+        // ctx.drawImage(img_crow_closeup_green, 400,100,364,280);
+        // ctx.drawImage(img_team_chicago, 50,300,256,256);
+        // ctx.drawImage(img_team_sfo, 400,300,256,256);
+
+        ctx.drawImage(img_crow_closeup_green, 12,70,364,280);
+        ctx.drawImage(img_crow_closeup_red, 420,70,364,280);
+        ctx.drawImage(img_team_sfo, 60,300,256,256);
+        ctx.drawImage(img_team_chicago, 480,300,256,256);
         if(blink) {
-            ctx.drawImage(img_vs,120,0,120,120,400,150,120,120);
+            ctx.drawImage(img_vs,120,0,120,120,340,250,120,120);
 
         } else {
-            ctx.drawImage(img_vs,0,0,120,120,400,150,120,120);
+            ctx.drawImage(img_vs,0,0,120,120,340,250,120,120);
 
         }
 
