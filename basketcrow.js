@@ -61,11 +61,18 @@ img_p1.src='assets/p1p2p1.png'
 
 var img_p2 = new Image();
 img_p2.src='assets/p1p2p2.png'
+//score board assets
 //score 0 2 4 6 8 10 sprite
 var img_score = new Image();
 img_score.src = 'assets/sprite-numbers.png'
+//teams
+var img_team_chicago_ui = new Image();
+img_team_chicago_ui.src='assets/table-chicago.png'
 
+var img_team_sfo_ui = new Image();
+img_team_chicago_ui.src='assets/table-sf.png'
 
+//feather
 var img_feather=new Image();
 img_feather.src='assets/feather-grey.png'
 
@@ -169,6 +176,13 @@ function tick() {
         ctx.fillStyle = 'blue';
         ctx.drawImage(img_basket, BASKET_DISTANCE-36,250,125,108);
         ctx.drawImage(img_basket_r, SCREEN_WIDTH-BASKET_DISTANCE-90,250,125,108);
+        //draw p1 n p2
+        ctx.drawImage(img_p1);
+        ctx.drawImage(img_p2);
+        //draw team names
+        ctx.drawImage(img_team_chicago_ui);
+        ctx.drawImage(img_team_sfo_ui);      
+
 
         // img_basket.scale (-1,1);
 
