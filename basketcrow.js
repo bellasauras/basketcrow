@@ -271,9 +271,9 @@ window.addEventListener('keydown',function(e){
 
         setTimeout(function(){
             reset_crow_position();
+            time_remaining=MATCH_TIME;
 
         },100);
-        time_remaining=MATCH_TIME;
     } else if(scene==3) {
         if(e.keyCode==87) {
             crows[0].force=true;
