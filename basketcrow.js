@@ -59,8 +59,7 @@ function reset_crow_position() {
     ctx.clearRect(0,0,1000000,100000);
     if(scene==0) {
         ctx.drawImage(img_bclogo, 100,100,600,280);
-        if((start_game_pressed&&blink)||!start_game_pressed) ctx.drawImage(img_press_any_key, 0,0,120,120,250,300,240,240);
-
+        if((start_game_pressed&&blink)||!start_game_pressed) ctx.drawImage(img_press_any_key, 0,0,480,480,250,300,240,240);
     } else if(scene==1) {
         var dist = Math.sqrt( Math.pow((crows[0].x-crows[1].x), 2) + Math.pow((crows[0].y-crows[1].y),2));
         if(dist<(CROW_SIZE/2)&&stealing==false) {
