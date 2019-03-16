@@ -3,7 +3,8 @@ const SCREEN_WIDTH=800;
 const SCREEN_HEIGHT=600;
 const BASKET_DISTANCE=70;
 const MATCH_TIME=60000;
-var scene=0;
+var scene=2;
+var winner=0;
 var game=false;
 var scores=[0,0];
 var start_game_pressed=false;
@@ -56,12 +57,20 @@ function reset_crow_position() {
 }
 function tick() {
     
-    // scene 1
     ctx.clearRect(0,0,1000000,100000);
+
     if(scene==0) {
-        ctx.drawImage(img_bclogo, 100,100,600,280);
-        if((start_game_pressed&&blink)||!start_game_pressed) ctx.drawImage(img_press_any_key, 0,0,480,480,250,300,240,240);
+        // scene 0: official licensed product
+        ctx.fillText("A CBA OFFICIAL LICENSED PRODUCT",100,100);
     } else if(scene==1) {
+        ctx.drawImage(img_bclogo, 0,0,480,480);
+        if((start_game_pressed&&blink)||!start_game_pressed) ctx.drawImage(img_press_any_key, 0,0,480,480,250,300,240,240);
+
+    } else if(scene==2) {
+        // scene 2: vs.
+        ctx.fillText("CHICAGO VS. SAN FRANCISCO",100,100);
+    } else if(scene==3) {
+        // scene 3: game
         var dist = Math.sqrt( Math.pow((crows[0].x-crows[1].x), 2) + Math.pow((crows[0].y-crows[1].y),2));
         if(dist<(CROW_SIZE/2)&&stealing==false) {
             stealing=true;
@@ -140,14 +149,21 @@ window.requestAnimationFrame(tick);
 // keyboard events
 window.addEventListener('keydown',function(e){
     if(scene==0&&start_game_pressed==false) {
+        // 0: official cba product
+        scene=1;
+
+    } else if(scene==1) {
+        // 1: title screen
         start_game_pressed=true;
         setTimeout(function(){
-            scene=1;
+            scene=2;
             start_game_pressed=false;
-            time_remaining=MATCH_TIME;
-            reset_crow_position();
         },2000)
-    } else if(scene==1) {
+    } else if(scene==2) {
+        scene=3;
+        reset_crow_position();
+        time_remaining=MATCH_TIME;
+    } else if(scene==3) {
         if(e.keyCode==65) {
             // crows[0].clockwise=true;
         } else if(e.keyCode==68) {
@@ -164,7 +180,7 @@ window.addEventListener('keydown',function(e){
   
 });
 window.addEventListener('keyup',function(e){
-    if(scene==1) {
+    if(scene==3) {
         if(e.keyCode==65) {
             // crows[0].clockwise=true;
         } else if(e.keyCode==68) {
