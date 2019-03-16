@@ -80,10 +80,17 @@ function tick() {
 
     } else if(scene==2) {
         // scene 2: vs.
-        ctx.drawImage(img_crow_closeup_red, 50,100,364,280);
-        ctx.drawImage(img_crow_closeup_green, 400,100,364,280);
-        ctx.drawImage(img_team_chicago, 50,300,256,256);
-        ctx.drawImage(img_team_sfo, 400,300,256,256);
+        // ctx.drawImage(img_crow_closeup_red, 50,100,364,280);
+        // ctx.drawImage(img_crow_closeup_green, 400,100,364,280);
+        // ctx.drawImage(img_team_chicago, 50,300,256,256);
+        // ctx.drawImage(img_team_sfo, 400,300,256,256);
+
+        ctx.drawImage(img_crow_closeup_green, 12,70,364,280);
+        ctx.drawImage(img_crow_closeup_red, 420,70,364,280);
+        ctx.drawImage(img_team_sfo, 60,300,256,256);
+        ctx.drawImage(img_team_chicago, 480,300,256,256);
+
+
     } else if(scene==3) {
         // scene 3: game
         var dist = Math.sqrt( Math.pow((crows[0].x-crows[1].x), 2) + Math.pow((crows[0].y-crows[1].y),2));
