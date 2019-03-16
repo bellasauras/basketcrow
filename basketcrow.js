@@ -1,7 +1,7 @@
 const CROW_SIZE=140;
 const SCREEN_WIDTH=800;
 const SCREEN_HEIGHT=600;
-const BASKET_DISTANCE=50;
+const BASKET_DISTANCE=70;
 const MATCH_TIME=60000;
 var scene=0;
 var game=false;
@@ -24,12 +24,19 @@ var img_crow = new Image();
 img_crow.src='assets/crow-sprite-3.png'
 var img_court = new Image();
 img_court.src='assets/crow-court.png'
+
 var img_basket = new Image();
 img_basket.src='assets/basket.png'
+
+var img_basket_r = new Image();
+img_basket_r.src = 'assets/basketr.png'
+
 var img_bclogo = new Image();
 img_bclogo.src='assets/bclogo.png'
+
 var img_press_any_key = new Image();
 img_press_any_key.src='assets/press-any-key.png'
+
 var img_ball=new Image();
 img_ball.src='assets/crow-ball.png'
 
@@ -47,8 +54,7 @@ function reset_crow_position() {
     }
     point=null;
 
-}
-function tick() {
+    
     // scene 1
     ctx.clearRect(0,0,1000000,100000);
     if(scene==0) {
@@ -85,8 +91,10 @@ function tick() {
 
         // draw baskets
         ctx.fillStyle = 'blue';
-        ctx.drawImage(img_basket, BASKET_DISTANCE-36,250,76,108);
-        ctx.drawImage(img_basket, SCREEN_WIDTH-BASKET_DISTANCE-36,250,76,108);
+        ctx.drawImage(img_basket, BASKET_DISTANCE-36,250,125,108);
+        ctx.drawImage(img_basket_r, SCREEN_WIDTH-BASKET_DISTANCE-90,250,125,108);
+
+        // img_basket.scale (-1,1);
 
         // ctx.fillRect(BASKET_DISTANCE,300,30,30);
         // ctx.fillRect(SCREEN_WIDTH-BASKET_DISTANCE,300,30,30);
