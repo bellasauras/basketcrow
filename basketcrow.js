@@ -232,7 +232,8 @@ function tick() {
                         point=i;                
                         scores[i]+=2;
                         audio_point_cheer.currentTime = 0;
-
+                        audio_swish.currentTime=0;
+                        audio_swish.play();
                         audio_point_cheer.play();
                         setTimeout(function(){
                             reset_crow_position();
