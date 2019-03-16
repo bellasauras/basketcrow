@@ -48,10 +48,10 @@ var img_crow_closeup_green=new Image();
 img_crow_closeup_green.src='assets/crow-closeup-green.png'
 
 var img_team_chicago=new Image();
-img_team_chicago.src='assets/team-chicago.png'
+img_team_chicago.src='assets/logo-worm.png'
 
 var img_team_sfo=new Image();
-img_team_sfo.src='assets/team-sfo.png'
+img_team_sfo.src='assets/logo-corn.png'
 
 // canvas stuff
 var canvas = document.getElementById('canvas');
