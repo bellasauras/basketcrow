@@ -41,6 +41,12 @@ img_press_any_key.src='assets/press-any-key.png'
 var img_ball=new Image();
 img_ball.src='assets/crow-ball.png'
 
+var img_crow_closeup_red=new Image();
+img_crow_closeup_red.src='assets/crow-closeup-red.png'
+
+var img_crow_closeup_green=new Image();
+img_crow_closeup_green.src='assets/crow-closeup-green.png'
+
 // canvas stuff
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext ('2d');
@@ -69,6 +75,8 @@ function tick() {
     } else if(scene==2) {
         // scene 2: vs.
         ctx.fillText("CHICAGO VS. SAN FRANCISCO",100,100);
+        ctx.drawImage(img_crow_closeup_red, 50,100,364,280);
+        ctx.drawImage(img_crow_closeup_green, 400,100,364,280);
     } else if(scene==3) {
         // scene 3: game
         var dist = Math.sqrt( Math.pow((crows[0].x-crows[1].x), 2) + Math.pow((crows[0].y-crows[1].y),2));
