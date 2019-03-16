@@ -10,6 +10,7 @@ var scores=[0,0];
 var start_game_pressed=false;
 var time_remaining=MATCH_TIME;
 var blink=true;
+var feathers=[];
 setInterval(function(){
     if(blink) {
         blink=false
@@ -53,6 +54,12 @@ img_team_chicago.src='assets/logo-worm.png'
 var img_team_sfo=new Image();
 img_team_sfo.src='assets/logo-corn.png'
 
+var img_feather=new Image();
+img_feather.src='assets/feather-grey.png'
+
+var img_vs=new Image();
+img_vs.src='assets/vs.png'
+
 // canvas stuff
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext ('2d');
@@ -84,13 +91,26 @@ function tick() {
         ctx.drawImage(img_crow_closeup_green, 400,100,364,280);
         ctx.drawImage(img_team_chicago, 50,300,256,256);
         ctx.drawImage(img_team_sfo, 400,300,256,256);
+        if(blink) {
+            ctx.drawImage(img_vs,120,0,120,120,400,150,120,120);
+
+        } else {
+            ctx.drawImage(img_vs,0,0,120,120,400,150,120,120);
+
+        }
+
     } else if(scene==3) {
         // scene 3: game
         var dist = Math.sqrt( Math.pow((crows[0].x-crows[1].x), 2) + Math.pow((crows[0].y-crows[1].y),2));
         if(dist<(CROW_SIZE/2)&&stealing==false) {
             stealing=true;
             audio_crow1.play(); 
-
+            feathers.push(new Feather(crows[0].x,crows[0].y))
+            feathers.push(new Feather(crows[1].x,crows[1].y))
+            feathers.push(new Feather(crows[0].x-Math.random()*2,crows[0].y+Math.random()*5))
+            feathers.push(new Feather(crows[1].x+Math.random()*3,crows[1].y-Math.random()*4))
+            feathers.push(new Feather(crows[0].x-Math.random()*4,crows[0].y+Math.random()*3))
+            feathers.push(new Feather(crows[1].x+Math.random()*5,crows[1].y-Math.random()*2))
             if(crows[0].ball) {
                 crows[1].ball=true;
                 crows[0].ball=false;
@@ -125,7 +145,14 @@ function tick() {
 
         // ctx.fillRect(BASKET_DISTANCE,300,30,30);
         // ctx.fillRect(SCREEN_WIDTH-BASKET_DISTANCE,300,30,30);
-
+        // draw feathers
+        for(let i=0;i<feathers.length;i++) {
+            feathers[i].life+=delta_time;
+            if(feathers[i].life<600) {
+                feathers[i].draw(ctx);
+            }
+        }
+        
         // draw crows
         for(let i=0;i<crows.length;i++) {
             if(time_remaining>0) {
@@ -182,14 +209,7 @@ window.addEventListener('keydown',function(e){
         reset_crow_position();
         time_remaining=MATCH_TIME;
     } else if(scene==3) {
-        if(e.keyCode==65) {
-            // crows[0].clockwise=true;
-        } else if(e.keyCode==68) {
-            // crows[0].clockwise=false;
-        } else if(e.keyCode==83) {
-            // crows[0].up=false;
-        } else if(e.keyCode==87) {
-            // crows[0].up=true;
+        if(e.keyCode==87) {
             crows[0].force=true;
         } else if(e.keyCode==38) {
             crows[1].force=true;
@@ -199,14 +219,7 @@ window.addEventListener('keydown',function(e){
 });
 window.addEventListener('keyup',function(e){
     if(scene==3) {
-        if(e.keyCode==65) {
-            // crows[0].clockwise=true;
-        } else if(e.keyCode==68) {
-            // crows[0].clockwise=false;
-        } else if(e.keyCode==83) {
-            // crows[0].up=false;
-        } else if(e.keyCode==87) {
-            // crows[0].up=true;
+        if(e.keyCode==87) {
             crows[0].force=false;
         } else if(e.keyCode==38) {
             crows[1].force=false;
