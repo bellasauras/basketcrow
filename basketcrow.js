@@ -171,6 +171,8 @@ function tick() {
                 scene=0;
                 audio_ambient0.pause();
                 audio_ambient1.pause();
+                audio_ambient2.pause();
+
             },6000)
         }
         last_time=Date.now();
@@ -262,6 +264,8 @@ window.addEventListener('keydown',function(e){
         audio_music0.pause();
         audio_ambient0.play();
         audio_ambient1.play();
+        audio_ambient2.play();
+
         setTimeout(function(){
             reset_crow_position();
 
