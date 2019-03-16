@@ -118,22 +118,18 @@ function tick() {
 
     } else if(scene==2) {
         // scene 2: vs.
-        // ctx.drawImage(img_crow_closeup_red, 50,100,364,280);
-        // ctx.drawImage(img_crow_closeup_green, 400,100,364,280);
-        // ctx.drawImage(img_team_chicago, 50,300,256,256);
-        // ctx.drawImage(img_team_sfo, 400,300,256,256);
-
         ctx.drawImage(img_crow_closeup_orange, 12,50,364,364);
         ctx.drawImage(img_crow_closeup_red, 420,50,364,364);
         ctx.drawImage(img_team_sfo, 60,300,256,256);
         ctx.drawImage(img_team_chicago, 480,300,256,256);
-        if(blink) {
-            ctx.drawImage(img_vs,120,0,120,120,340,250,120,120);
+        ctx.drawImage(img_vs,120,120,120,120);
 
-        } else {
-            ctx.drawImage(img_vs,0,0,120,120,340,250,120,120);
+        // if(blink) {
 
-        }
+        // } else {
+            // ctx.drawImage(img_vs,0,0,120,120,340,250,120,120);
+
+        
 
     } else if(scene==3) {
         // scene 3: game
