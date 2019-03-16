@@ -98,27 +98,36 @@ function reset_crow_position() {
  
     point=null;
 }
+function draw_gradient() {
+    // Create gradient
+    var grd = ctx.createLinearGradient(0, SCREEN_HEIGHT, SCREEN_WIDTH, 0);
+    grd.addColorStop(0, "red");
+    grd.addColorStop(1, "blue");
+
+    // Fill with gradient
+    ctx.fillStyle = grd;
+    ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+}
 function tick() {
     ctx.resetTransform();
 
     ctx.clearRect(0,0,1000000,100000);
 
     if(scene==0) {
-        // scene 0: official licensed product
-        ctx.beginPath();
-        ctx.rect(0, 0, 800, 600);
-        ctx.fillStyle = "green";
-        ctx.fill();
+        draw_gradient();
+  
         ctx.drawImage(img_cba, 160,50,480,480);
         ctx.fillStyle = "white";
         ctx.font = '20px fantasy';
         ctx.fillText("AN OFFICIAL CBA LICENSED PRODUCT",255,490);
     } else if(scene==1) {
+        draw_gradient();
         ctx.drawImage(img_bclogo, 60,80,720,336);
         if(!start_game_pressed&&blink) ctx.drawImage(img_press_any_key, 0,0,480,480,250,350,240,240);
 
     } else if(scene==2) {
         // scene 2: vs.
+        draw_gradient();
         ctx.drawImage(img_crow_closeup_orange, 12,50,364,364);
         ctx.drawImage(img_crow_closeup_red, 420,50,364,364);
         ctx.drawImage(img_team_sfo, 60,300,256,256);

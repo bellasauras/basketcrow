@@ -20,3 +20,5 @@ audio_point_cheer.src='audio/point_cheer.wav'
 audio_point_cheer.volume=0.4;
 var audio_horn = document.createElement("audio");
 audio_horn.src='audio/horn.wav'
+var audio_swish = document.createElement("audio");
+audio_swish.src='audio/swish.wav'
