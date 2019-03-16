@@ -3,7 +3,7 @@ const SCREEN_WIDTH=800;
 const SCREEN_HEIGHT=600;
 const BASKET_DISTANCE=70;
 const MATCH_TIME=60000;
-var scene=2;
+var scene=0;
 var winner=0;
 var game=false;
 var scores=[0,0];
@@ -60,6 +60,9 @@ img_feather.src='assets/feather-grey.png'
 var img_vs=new Image();
 img_vs.src='assets/vs.png'
 
+var img_cba=new Image();
+img_cba.src='assets/logo-crow-association.png'
+
 // canvas stuff
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext ('2d');
@@ -69,9 +72,11 @@ var point=null;
 function reset_crow_position() {
     if(point==1) {
         crows=[new Crow(200,300,true),new Crow(600,300,false)];
+        
     } else {
         crows=[new Crow(200,300,false),new Crow(600,300,true)];
     }
+ 
     point=null;
 }
 function tick() {
@@ -80,12 +85,17 @@ function tick() {
 
     if(scene==0) {
         // scene 0: official licensed product
-        ctx.drawImage(img_bclogo, 0,0,480,480);
-
-        ctx.fillText("A CBA OFFICIAL LICENSED PRODUCT",100,100);
+        ctx.beginPath();
+        ctx.rect(0, 0, 800, 600);
+        ctx.fillStyle = "green";
+        ctx.fill();
+        ctx.drawImage(img_cba, 160,50,480,480);
+        ctx.fillStyle = "white";
+        ctx.font = '20px fantasy';
+        ctx.fillText("AN OFFICIAL CBA LICENSED PRODUCT",255,490);
     } else if(scene==1) {
-        ctx.drawImage(img_bclogo, 0,0,480,480);
-        if((start_game_pressed&&blink)||!start_game_pressed) ctx.drawImage(img_press_any_key, 0,0,480,480,250,300,240,240);
+        ctx.drawImage(img_bclogo, 60,80,720,336);
+        if(!start_game_pressed&&blink) ctx.drawImage(img_press_any_key, 0,0,480,480,250,350,240,240);
 
     } else if(scene==2) {
         // scene 2: vs.
@@ -200,19 +210,24 @@ function tick() {
 window.requestAnimationFrame(tick);
 // keyboard events
 window.addEventListener('keydown',function(e){
-    if(scene==0&&start_game_pressed==false) {
+    if(scene==0) {
         // 0: official cba product
         scene=1;
+        audio_music0.play();
 
-    } else if(scene==1) {
+    } else if(scene==1&&start_game_pressed==false) {
         // 1: title screen
         start_game_pressed=true;
+        
         setTimeout(function(){
             scene=2;
             start_game_pressed=false;
+            audio_music0.pause();
+
         },2000)
     } else if(scene==2) {
         scene=3;
+        audio_music0.pause();
         reset_crow_position();
         time_remaining=MATCH_TIME;
     } else if(scene==3) {

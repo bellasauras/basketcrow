@@ -1,7 +1,7 @@
 
-function Crow(x,y,ball) {
-    this.x=x;
-    this.y=y;
+function Crow(_x,_y,ball) {
+    this.x=_x;
+    this.y=_y;
     this.angle=0;
     this.ball=ball;
     this.clockwise=false;
@@ -11,16 +11,13 @@ function Crow(x,y,ball) {
         ctx.fillStyle = 'red';
         let frame=0;
         if(this.force) frame=1;
-
         ctx.save();
         ctx.translate(this.x, this.y);
         if(this.clockwise) {
             ctx.rotate(Math.radians(this.angle*-1 % 360));
         } else {
             ctx.rotate(Math.radians(this.angle+100 % 360));
-
         }
-        
         ctx.translate(-this.x,-this.y);
         if(this.ball) ctx.drawImage(img_ball, this.x-50,this.y-50,100,100);
 
