@@ -53,7 +53,8 @@ function reset_crow_position() {
         crows=[new Crow(200,300,false),new Crow(600,300,true)];
     }
     point=null;
-
+}
+function tick() {
     
     // scene 1
     ctx.clearRect(0,0,1000000,100000);
