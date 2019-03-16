@@ -165,8 +165,15 @@ function tick() {
             time_remaining=time_remaining-delta_time;
         } else if(game==false) {
             game=true;
+            audio_horn.currentTime = 0;
+            audio_horn.play();
+
             setTimeout(function(){
                 scene=0;
+                audio_ambient0.pause();
+                audio_ambient1.pause();
+                audio_ambient2.pause();
+
             },6000)
         }
         last_time=Date.now();
@@ -215,6 +222,9 @@ function tick() {
                         crows[1].ball=false;
                         point=i;                
                         scores[i]+=2;
+                        audio_point_cheer.currentTime = 0;
+
+                        audio_point_cheer.play();
                         setTimeout(function(){
                             reset_crow_position();
                         },1000)
@@ -240,6 +250,7 @@ window.addEventListener('keydown',function(e){
     if(scene==0) {
         // 0: official cba product
         scene=1;
+        audio_music0.currentTime=0;
         audio_music0.play();
 
     } else if(scene==1&&start_game_pressed==false) {
@@ -249,12 +260,15 @@ window.addEventListener('keydown',function(e){
         setTimeout(function(){
             scene=2;
             start_game_pressed=false;
-            audio_music0.pause();
 
         },2000)
     } else if(scene==2) {
         scene=3;
         audio_music0.pause();
+        audio_ambient0.play();
+        audio_ambient1.play();
+        audio_ambient2.play();
+
         setTimeout(function(){
             reset_crow_position();
 
