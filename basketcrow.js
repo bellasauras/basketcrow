@@ -197,17 +197,13 @@ function tick() {
         ctx.drawImage(img_p1, 100,500,38,38);
         ctx.drawImage(img_p2,100,550,38,38);
         //draw team names
-        ctx.drawImage(img_team_chicago_ui,90,470,145,145);
-        ctx.drawImage(img_team_sfo_ui,68,520,145,145);      
+        ctx.drawImage(img_team_chicago_ui,90,465,145,145);
+        ctx.drawImage(img_team_sfo_ui,68,515,145,145);      
         //draw score 0 2 4 6 8 10
-        ctx.drawImage(img_score,200,550,145,145)        
+        //start of cut in asset / w n h, position x position y / size w n h,
+        ctx.drawImage(img_score,0,0,128,128,300,500,50,50);
+        ctx.drawImage(img_score,0,0,128,128,300,560,50,50);
 
-
-        // img_basket.scale (-1,1);
-
-        // ctx.fillRect(BASKET_DISTANCE,300,30,30);
-        // ctx.fillRect(SCREEN_WIDTH-BASKET_DISTANCE,300,30,30);
-        // draw feathers
         for(let i=0;i<feathers.length;i++) {
             feathers[i].life+=delta_time;
             if(feathers[i].life<600) {
