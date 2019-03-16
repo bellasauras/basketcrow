@@ -99,7 +99,8 @@ function reset_crow_position() {
     point=null;
 }
 function tick() {
-    
+    ctx.resetTransform();
+
     ctx.clearRect(0,0,1000000,100000);
 
     if(scene==0) {
@@ -133,28 +134,32 @@ function tick() {
 
     } else if(scene==3) {
         // scene 3: game
-        var dist = Math.sqrt( Math.pow((crows[0].x-crows[1].x), 2) + Math.pow((crows[0].y-crows[1].y),2));
-        if(dist<(CROW_SIZE/2)&&stealing==false) {
-            stealing=true;
-            audio_crow1.play(); 
-            feathers.push(new Feather(crows[0].x,crows[0].y))
-            feathers.push(new Feather(crows[1].x,crows[1].y))
-            feathers.push(new Feather(crows[0].x-Math.random()*2,crows[0].y+Math.random()*5))
-            feathers.push(new Feather(crows[1].x+Math.random()*3,crows[1].y-Math.random()*4))
-            feathers.push(new Feather(crows[0].x-Math.random()*4,crows[0].y+Math.random()*3))
-            feathers.push(new Feather(crows[1].x+Math.random()*5,crows[1].y-Math.random()*2))
-            if(crows[0].ball) {
-                crows[1].ball=true;
-                crows[0].ball=false;
-                
-            } else if(crows[1].ball) {
-                crows[1].ball=false;
-                crows[0].ball=true;
-            }
-            setTimeout(function(){
-                stealing=false;
-            },1000)
-        } 
+        // check crow distance to baskets
+        if(crows.length==2) {
+            var dist = Math.sqrt( Math.pow((crows[0].x-crows[1].x), 2) + Math.pow((crows[0].y-crows[1].y),2));
+            if(dist<(CROW_SIZE/2)&&stealing==false) {
+                stealing=true;
+                audio_crow1.play(); 
+                feathers.push(new Feather(crows[0].x,crows[0].y))
+                feathers.push(new Feather(crows[1].x,crows[1].y))
+                feathers.push(new Feather(crows[0].x-Math.random()*2,crows[0].y+Math.random()*5))
+                feathers.push(new Feather(crows[1].x+Math.random()*3,crows[1].y-Math.random()*4))
+                feathers.push(new Feather(crows[0].x-Math.random()*4,crows[0].y+Math.random()*3))
+                feathers.push(new Feather(crows[1].x+Math.random()*5,crows[1].y-Math.random()*2))
+                if(crows[0].ball) {
+                    crows[1].ball=true;
+                    crows[0].ball=false;
+                    
+                } else if(crows[1].ball) {
+                    crows[1].ball=false;
+                    crows[0].ball=true;
+                }
+                setTimeout(function(){
+                    stealing=false;
+                },1000)
+            } 
+        }
+
         delta_time=Date.now()-last_time;
         if(time_remaining>0) {
             time_remaining=time_remaining-delta_time;
@@ -250,7 +255,10 @@ window.addEventListener('keydown',function(e){
     } else if(scene==2) {
         scene=3;
         audio_music0.pause();
-        reset_crow_position();
+        setTimeout(function(){
+            reset_crow_position();
+
+        },100);
         time_remaining=MATCH_TIME;
     } else if(scene==3) {
         if(e.keyCode==87) {
