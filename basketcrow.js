@@ -178,11 +178,11 @@ function tick() {
         ctx.drawImage(img_basket, BASKET_DISTANCE-36,250,125,108);
         ctx.drawImage(img_basket_r, SCREEN_WIDTH-BASKET_DISTANCE-90,250,125,108);
         //draw p1 n p2
-        ctx.drawImage(img_p1);
-        ctx.drawImage(img_p2);
+        ctx.drawImage(img_p1, 100,100,100,100);
+        ctx.drawImage(img_p2,100,500,100,100);
         //draw team names
-        ctx.drawImage(img_team_chicago_ui);
-        ctx.drawImage(img_team_sfo_ui);      
+        ctx.drawImage(img_team_chicago_ui,100,100,100,100);
+        ctx.drawImage(img_team_sfo_ui,300,100,100,100);      
 
 
         // img_basket.scale (-1,1);
