@@ -5,7 +5,7 @@ const BASKET_DISTANCE=70;
 const MATCH_TIME=60000;
 var elapsed_time=0;
 var scene=4;
-var winner=0;
+var winner=1;
 var game=false;
 var scores=[0,0];
 var start_game_pressed=false;
@@ -97,6 +97,12 @@ img_winner_green.src='assets/winner_green.png'
 
 var img_winner_orange=new Image();
 img_winner_orange.src='assets/winner_orange.png'
+
+var img_wins_chicago=new Image();
+img_wins_chicago.src='assets/wins_chicago.png'
+
+var img_wins_sfo=new Image();
+img_wins_sfo.src='assets/wins_sfo.png'
 
 // canvas stuff
 var canvas = document.getElementById('canvas');
@@ -277,7 +283,14 @@ function tick() {
         
     } else if(scene==4) {
         draw_gradient();
-        ctx.drawImage(img_winner_green, 100,50+Math.sin(elapsed_time/300)*32,512,512);
+        if(winner==0) {
+            ctx.drawImage(img_winner_orange, 100,50+Math.sin(elapsed_time/300)*32,512,512);
+            ctx.drawImage(img_wins_sfo, 10,500,780,50);
+        } else {
+            ctx.drawImage(img_winner_green, 100,50+Math.sin(elapsed_time/300)*32,512,512);
+            ctx.drawImage(img_wins_chicago, 100,500,604,56);
+        }
+
 
     }
 
