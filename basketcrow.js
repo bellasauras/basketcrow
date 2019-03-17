@@ -1,3 +1,8 @@
+// INSTRUCTIONS:
+// 1. press key to fly farther
+// 2. steal ball from enemy
+// 3. fly with the ball to the hoop
+
 const CROW_SIZE=140;
 const SCREEN_WIDTH=800;
 const SCREEN_HEIGHT=600;
