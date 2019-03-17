@@ -82,6 +82,13 @@ img_vs.src='assets/vs.png'
 var img_cba=new Image();
 img_cba.src='assets/logo-crow-association.png'
 
+
+var img_winner_green=new Image();
+img_winner_green.src='assets/winner_green.png'
+
+var img_winner_orange=new Image();
+img_winner_orange.src='assets/winner_orange.png'
+
 // canvas stuff
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext ('2d');
