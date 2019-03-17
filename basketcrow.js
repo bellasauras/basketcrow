@@ -209,7 +209,10 @@ function tick() {
                     audio_music1.play();
                     if(scores[0]>scores[1]) winner=0;
                     if(scores[1]>scores[0]) winner=1;
-                    
+                    audio_crow0.currentTime=0;
+                    setTimeout(function(){
+                        audio_crow0.play();
+                    })
                     scene=4;
                 } else {
                     scene=0;

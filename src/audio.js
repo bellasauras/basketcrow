@@ -1,3 +1,5 @@
+var audio_crow0 = document.createElement("audio");
+audio_crow0.src='audio/crow1.wav'
 var audio_crow1 = document.createElement("audio");
 audio_crow1.src='audio/crow1.wav'
 var audio_music0 = document.createElement("audio");
