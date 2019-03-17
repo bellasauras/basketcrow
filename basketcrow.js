@@ -141,8 +141,8 @@ function tick() {
         ctx.drawImage(img_crow_closeup_red, 420,50,364,364);
         ctx.drawImage(img_team_sfo, 60,300,256,256);
         ctx.drawImage(img_team_chicago, 480,300,256,256);
-        ctx.drawImage(img_vs,120,120,120,120);
-
+        ctx.drawImage(img_vs,320,220,128,128);
+        ctx.drawImage(img_tonight_ui,150,-200,500,500);
         // if(blink) {
 
         // } else {
