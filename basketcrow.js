@@ -174,7 +174,7 @@ function tick() {
                     stealing=false;
                 },1000)
             } 
-        }
+        } 
 
         delta_time=Date.now()-last_time;
         if(time_remaining>0) {
@@ -255,6 +255,10 @@ function tick() {
         ctx.fillText ("SAN FRANCISCO    "+scores[1], 100, 560);
         ctx.fillText ("TIME REMAINING:  "+Math.round(time_remaining/1000), 100, 100);
         
+    } else if(scene==4) {
+        draw_gradient();
+        ctx.drawImage(img_winner_green, 100,100,512,512);
+
     }
 
     window.requestAnimationFrame(tick);
@@ -295,6 +299,8 @@ window.addEventListener('keydown',function(e){
         } else if(e.keyCode==38) {
             crows[1].force=true;
         }
+    } else if(scene==4) {
+        scene=0;
     }
   
 });
