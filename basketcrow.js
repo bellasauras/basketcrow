@@ -285,8 +285,7 @@ function tick() {
         }
         // draw scores
         ctx.font = '20px fantasy';
-        ctx.fillText ("CHICAGO       "+scores[0], 100, 540);
-        ctx.fillText ("SAN FRANCISCO    "+scores[1], 100, 560);
+
         ctx.fillText ("TIME REMAINING:  "+Math.round(time_remaining/1000), 100, 100);
         
     } else if(scene==4) {
