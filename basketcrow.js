@@ -151,6 +151,7 @@ function tick() {
         if(!start_game_pressed&&blink) ctx.drawImage(img_press_any_key, 0,0,480,480,250,350,240,240);
 
     } else if(scene==2) {
+        
         // scene 2: vs.
         draw_gradient();
         ctx.drawImage(img_crow_closeup_orange, 12,50,364,364);
@@ -169,6 +170,8 @@ function tick() {
     } else if(scene==3) {
         // scene 3: game
         // check crow distance to baskets
+        if(audio_music0.volume>0) audio_music0.volume=Math.max(0,audio_music0.volume-0.01);
+
         if(crows.length==2) {
             var dist = Math.sqrt( Math.pow((crows[0].x-crows[1].x), 2) + Math.pow((crows[0].y-crows[1].y),2));
             if(dist<(CROW_SIZE/2)&&stealing==false) {
@@ -210,13 +213,15 @@ function tick() {
                     if(scores[0]>scores[1]) winner=0;
                     if(scores[1]>scores[0]) winner=1;
                     audio_crow0.currentTime=0;
-                    setTimeout(function(){
-                        audio_crow0.play();
-                    })
                     scene=4;
                 } else {
+                    audio_music0.pause();
+                    audio_music0.volume=1;
+                    audio_music0.currentTime=0;
                     scene=0;
-
+                    scores[0]=0;
+                    game=false;
+                    scores[1]=0;
                 }
                 
 
@@ -285,6 +290,7 @@ function tick() {
         ctx.fillText ("TIME REMAINING:  "+Math.round(time_remaining/1000), 100, 100);
         
     } else if(scene==4) {
+
         draw_gradient();
         if(winner==0) {
             ctx.drawImage(img_winner_orange, 100,50+Math.sin(elapsed_time/300)*32,512,512);
@@ -319,7 +325,6 @@ window.addEventListener('keydown',function(e){
         },2000)
     } else if(scene==2) {
         scene=3;
-        audio_music0.pause();
         audio_ambient0.play();
         audio_ambient1.play();
         audio_ambient2.play();
@@ -336,10 +341,16 @@ window.addEventListener('keydown',function(e){
             crows[1].force=true;
         }
     } else if(scene==4) {
+        audio_music1.pause();
+        audio_music1.currentTime=0;
+        audio_music0.pause();
+        audio_music0.volume=1;
+        audio_music0.currentTime=0;
+        time_remaining=MATCH_TIME;
         scene=0;
+        game=false;
         scores[0]=0;
         scores[1]=0;
-        audio_music0.pause();
     }
   
 });
