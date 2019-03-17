@@ -3,6 +3,7 @@ const SCREEN_WIDTH=800;
 const SCREEN_HEIGHT=600;
 const BASKET_DISTANCE=70;
 const MATCH_TIME=60000;
+var elapsed_time=0;
 var scene=4;
 var winner=0;
 var game=false;
@@ -118,6 +119,9 @@ function draw_gradient() {
     ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 function tick() {
+    delta_time=Date.now()-last_time;
+    last_time=Date.now();
+    elapsed_time+=delta_time;
     ctx.resetTransform();
 
     ctx.clearRect(0,0,1000000,100000);
@@ -178,7 +182,6 @@ function tick() {
             } 
         } 
 
-        delta_time=Date.now()-last_time;
         if(time_remaining>0) {
             time_remaining=time_remaining-delta_time;
         } else if(game==false) {
@@ -204,7 +207,6 @@ function tick() {
 
             },6000)
         }
-        last_time=Date.now();
         // draw court
         ctx.drawImage(img_court, 0,0,800,600);
 
@@ -269,7 +271,7 @@ function tick() {
         
     } else if(scene==4) {
         draw_gradient();
-        ctx.drawImage(img_winner_green, 100,100,512,512);
+        ctx.drawImage(img_winner_green, 100,50+Math.sin(elapsed_time/300)*32,512,512);
 
     }
 
@@ -313,6 +315,8 @@ window.addEventListener('keydown',function(e){
         }
     } else if(scene==4) {
         scene=0;
+        scores[0]=0;
+        scores[1]=0;
         audio_music0.pause();
     }
   
