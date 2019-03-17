@@ -7,9 +7,9 @@ const CROW_SIZE=140;
 const SCREEN_WIDTH=800;
 const SCREEN_HEIGHT=600;
 const BASKET_DISTANCE=70;
-const MATCH_TIME=60000;
+const MATCH_TIME=60000*3;
 var elapsed_time=0;
-var scene=4;
+var scene=0;
 var winner=0;
 var game=false;
 var scores=[0,0];
@@ -91,9 +91,9 @@ var img_tonight_ui = new Image();
 img_tonight_ui.src='assets/ui-tonight.png'
 //winners
 var img_wins_sfo = new Image();
-img_wins_sfo.src= 'assets/wins-sfo.png'
+img_wins_sfo.src= 'assets/wins_sfo.png'
 var img_wins_chicago = new Image();
-img_wins_chicago.src = 'assets/wins-chicago.png'
+img_wins_chicago.src = 'assets/wins_chicago.png'
 
 //feather
 var img_feather=new Image();
@@ -111,6 +111,9 @@ img_winner_green.src='assets/winner_green.png'
 
 var img_winner_orange=new Image();
 img_winner_orange.src='assets/winner_orange.png'
+
+var img_numbers=new Image();
+img_numbers.src='assets/numbers.png'
 
 // canvas stuff
 var canvas = document.getElementById('canvas');
@@ -138,6 +141,9 @@ function draw_gradient() {
     ctx.fillStyle = grd;
     ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
+function draw_numbers() {
+
+}
 function tick() {
     delta_time=Date.now()-last_time;
     last_time=Date.now();
@@ -145,10 +151,8 @@ function tick() {
     ctx.resetTransform();
 
     ctx.clearRect(0,0,1000000,100000);
-
     if(scene==0) {
         draw_gradient();
-  
         ctx.drawImage(img_cba, 160,50,480,480);
         ctx.fillStyle = "white";
         ctx.font = '20px fantasy';
@@ -285,10 +289,30 @@ function tick() {
         }
         // draw scores
         ctx.font = '20px fantasy';
-        ctx.fillText ("CHICAGO       "+scores[0], 100, 540);
-        ctx.fillText ("SAN FRANCISCO    "+scores[1], 100, 560);
-        ctx.fillText ("TIME REMAINING:  "+Math.round(time_remaining/1000), 100, 100);
-        
+        // ctx.fillText ("CHICAGO       "+scores[0], 100, 540);
+        // ctx.fillText ("SAN FRANCISCO    "+scores[1], 100, 560);
+        // draw time remaining
+        var minutes = Math.floor(time_remaining / 1000 / 60);
+
+        var seconds = Math.floor(time_remaining / 1000 - minutes * 60);
+        var seconds_1 = Math.floor(seconds / 10)
+        var seconds_2 = seconds % 10;
+        // console.log(minutes,Math.floor(seconds))
+        // minutes left
+        ctx.fillStyle = "black";
+
+        let clock_x=355;
+        ctx.fillRect(clock_x,0,90,32)
+        if(time_remaining<=0) {
+            minutes=0;
+            seconds_1=0;
+            seconds_2=0;
+        }
+        ctx.drawImage(img_numbers,0,0,512,512,clock_x,0,32,32);
+        ctx.drawImage(img_numbers,512*minutes,0,512,512,clock_x+16,0,32,32);
+        ctx.drawImage(img_numbers,512*seconds_1,0,512,512,clock_x+42,0,32,32);
+        ctx.drawImage(img_numbers,512*seconds_2,0,512,512,clock_x+58,0,32,32);
+
     } else if(scene==4) {
         draw_gradient();
         ctx.drawImage(img_winner_green, 100,50+Math.sin(elapsed_time/300)*32,512,512);
