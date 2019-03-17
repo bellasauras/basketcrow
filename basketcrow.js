@@ -161,12 +161,12 @@ function tick() {
     } else if(scene==2) {
         // scene 2: vs.
         draw_gradient();
-        ctx.drawImage(img_crow_closeup_orange, 12,50,364,364);
-        ctx.drawImage(img_crow_closeup_red, 420,50,364,364);
-        ctx.drawImage(img_team_sfo, 10,300,256,256);
-        ctx.drawImage(img_team_chicago, 450,300,256,256);
-        ctx.drawImage(img_vs,320,220,128,128);
-        ctx.drawImage(img_tonight_ui,150,-200,500,500);
+        ctx.drawImage(img_crow_closeup_orange, 100,130,200,200);
+        ctx.drawImage(img_crow_closeup_red, 455,130,200,200);
+        ctx.drawImage(img_team_sfo, 15,250,350,350);
+        ctx.drawImage(img_team_chicago, 400,250,350,350);
+        ctx.drawImage(img_vs,310,220,128,128);
+        ctx.drawImage(img_tonight_ui,150,-190,500,500);
         // if(blink) {
 
         // } else {
