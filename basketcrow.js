@@ -3,7 +3,7 @@ const SCREEN_WIDTH=800;
 const SCREEN_HEIGHT=600;
 const BASKET_DISTANCE=70;
 const MATCH_TIME=60000;
-var scene=0;
+var scene=4;
 var winner=0;
 var game=false;
 var scores=[0,0];
@@ -178,10 +178,11 @@ function tick() {
             audio_horn.play();
 
             setTimeout(function(){
-                scene=0;
+                scene=4;
                 audio_ambient0.pause();
                 audio_ambient1.pause();
                 audio_ambient2.pause();
+                audio_music1.play();
 
             },6000)
         }
@@ -292,6 +293,9 @@ window.addEventListener('keydown',function(e){
         } else if(e.keyCode==38) {
             crows[1].force=true;
         }
+    } else if(scene==4) {
+        scene=0;
+        audio_music1.pause();
     }
   
 });
