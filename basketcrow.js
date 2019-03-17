@@ -9,7 +9,7 @@ const SCREEN_HEIGHT=600;
 const BASKET_DISTANCE=70;
 const MATCH_TIME=60000*3;
 var elapsed_time=0;
-var scene=0;
+var scene=4;
 var winner=0;
 var game=false;
 var scores=[0,0];
@@ -246,8 +246,8 @@ function tick() {
         // ctx.drawImage(img_team_sfo_ui,68,515,145,145);      
         //draw score 0 2 4 6 8 10
         //start of cut in asset / w n h, position x position y / size w n h,
-        ctx.drawImage(img_score,0,0,128,128,330,480,50,50);
-        ctx.drawImage(img_score,0,0,128,128,330,540,50,50);
+        ctx.drawImage(img_score,128*scores[0],0,128,128,330,480,50,50);
+        ctx.drawImage(img_score,128*scores[1],0,128,128,330,540,50,50);
 
         for(let i=0;i<feathers.length;i++) {
             feathers[i].life+=delta_time;
@@ -315,7 +315,15 @@ function tick() {
 
     } else if(scene==4) {
         draw_gradient();
-        ctx.drawImage(img_winner_green, 100,50+Math.sin(elapsed_time/300)*32,512,512);
+        if(winner==1) {
+            ctx.drawImage(img_winner_green, 100,50+Math.sin(elapsed_time/300)*32,512,512);
+            ctx.drawImage(img_wins_chicago, 100,500);
+
+        } else {
+            ctx.drawImage(img_winner_orange, 100,50+Math.sin(elapsed_time/300)*32,512,512);
+            ctx.drawImage(img_wins_sfo, 50,500,700,50);
+
+        }
 
     }
 
