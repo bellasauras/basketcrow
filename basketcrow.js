@@ -82,13 +82,6 @@ img_vs.src='assets/vs.png'
 var img_cba=new Image();
 img_cba.src='assets/logo-crow-association.png'
 
-var img_winner_green=new Image();
-img_winner_green.src='assets/winner_green.png'
-
-var img_winner_orange=new Image();
-img_winner_orange.src='assets/winner_orange.png'
-
-
 // canvas stuff
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext ('2d');
@@ -185,11 +178,10 @@ function tick() {
             audio_horn.play();
 
             setTimeout(function(){
-                scene=4;
+                scene=0;
                 audio_ambient0.pause();
                 audio_ambient1.pause();
                 audio_ambient2.pause();
-                audio_music1.play();
 
             },6000)
         }
@@ -256,15 +248,6 @@ function tick() {
         ctx.fillText ("SAN FRANCISCO    "+scores[1], 100, 560);
         ctx.fillText ("TIME REMAINING:  "+Math.round(time_remaining/1000), 100, 100);
         
-    } else if(scene==4) {
-        draw_gradient();
-        if(winner==0) {
-            ctx.drawImage(img_winner_green, 0,0,512,512);
-
-        } else {
-            ctx.drawImage(img_winner_orange, 0,0,512,512);
-
-        }
     }
 
     window.requestAnimationFrame(tick);
@@ -305,9 +288,6 @@ window.addEventListener('keydown',function(e){
         } else if(e.keyCode==38) {
             crows[1].force=true;
         }
-    } else if(scene==4) {
-        scene=0;
-        audio_music1.pause();
     }
   
 });
