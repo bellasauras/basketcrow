@@ -72,9 +72,15 @@ img_team_chicago_ui.src='assets/table-chicago.png'
 
 var img_team_sfo_ui = new Image();
 img_team_sfo_ui.src='assets/table-sf.png'
-//tonights gane
+//tonights game
 var img_tonight_ui = new Image();
 img_tonight_ui.src='assets/ui-tonight.png'
+//winners
+var img_wins_sfo = new Image();
+img_wins_sfo.src= 'assets/wins-sfo.png'
+var img_wins_chicago = new Image();
+img_wins_chicago.src= 'assets/wins-chicago.png'
+
 //feather
 var img_feather=new Image();
 img_feather.src='assets/feather-grey.png'
