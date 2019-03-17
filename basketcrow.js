@@ -185,10 +185,20 @@ function tick() {
             audio_horn.play();
 
             setTimeout(function(){
-                scene=0;
                 audio_ambient0.pause();
                 audio_ambient1.pause();
                 audio_ambient2.pause();
+                if(scores[0]>scores[1]||scores[1]>scores[0]) {
+                    audio_music1.play();
+                    if(scores[0]>scores[1]) winner=0;
+                    if(scores[1]>scores[0]) winner=1;
+                    
+                    scene=4;
+                } else {
+                    scene=0;
+
+                }
+                
 
             },6000)
         }
@@ -301,6 +311,7 @@ window.addEventListener('keydown',function(e){
         }
     } else if(scene==4) {
         scene=0;
+        audio_music0.pause();
     }
   
 });
