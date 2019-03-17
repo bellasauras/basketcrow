@@ -213,15 +213,15 @@ function tick() {
         ctx.drawImage(img_basket, BASKET_DISTANCE-36,250,125,108);
         ctx.drawImage(img_basket_r, SCREEN_WIDTH-BASKET_DISTANCE-90,250,125,108);
         //draw p1 n p2
-        ctx.drawImage(img_p1, 100,500,38,38);
-        ctx.drawImage(img_p2,100,550,38,38);
+        ctx.drawImage(img_p1, 10,325,350,350);
+        ctx.drawImage(img_p2,10,385,350,350);
         //draw team names
-        ctx.drawImage(img_team_chicago_ui,90,465,145,145);
-        ctx.drawImage(img_team_sfo_ui,68,515,145,145);      
+        // ctx.drawImage(img_team_chicago_ui,90,465,145,145);
+        // ctx.drawImage(img_team_sfo_ui,68,515,145,145);      
         //draw score 0 2 4 6 8 10
         //start of cut in asset / w n h, position x position y / size w n h,
-        ctx.drawImage(img_score,0,0,128,128,300,500,50,50);
-        ctx.drawImage(img_score,0,0,128,128,300,560,50,50);
+        ctx.drawImage(img_score,0,0,128,128,330,480,50,50);
+        ctx.drawImage(img_score,0,0,128,128,330,540,50,50);
 
         for(let i=0;i<feathers.length;i++) {
             feathers[i].life+=delta_time;
