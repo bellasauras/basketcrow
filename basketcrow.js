@@ -292,7 +292,7 @@ function tick() {
     } else if(scene==4) {
 
         draw_gradient();
-        if(winner==0) {
+        if(winner==1) {
             ctx.drawImage(img_winner_orange, 100,50+Math.sin(elapsed_time/300)*32,512,512);
             ctx.drawImage(img_wins_sfo, 10,500,780,50);
         } else {
