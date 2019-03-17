@@ -71,7 +71,9 @@ img_team_chicago_ui.src='assets/table-chicago.png'
 
 var img_team_sfo_ui = new Image();
 img_team_sfo_ui.src='assets/table-sf.png'
-
+//tonights gane
+var img_tonight_ui = new Image();
+img_tonight_ui.src='assets/ui-tonight.png'
 //feather
 var img_feather=new Image();
 img_feather.src='assets/feather-grey.png'
